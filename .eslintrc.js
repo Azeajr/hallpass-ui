@@ -43,6 +43,7 @@ module.exports = {
         tsx: 'never',
       },
     ],
+    'react/react-in-jsx-scope': 'off',
   },
   settings: {
     'import/resolver': { node: { extensions: ['.js', '.jsx', '.ts', '.tsx'] } },
