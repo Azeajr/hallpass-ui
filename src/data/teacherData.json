@@ -1,0 +1,77 @@
+[
+  {
+    "courseTitle": "Course 1",
+    "students": [
+      {
+        "firstName": "Tony",
+        "lastName": "Zea"
+      },
+      {
+        "firstName": "Jon",
+        "lastName": "Jones"
+      },
+      {
+        "firstName": "Mary",
+        "lastName": "Pop"
+      },
+      {
+        "firstName": "Sam",
+        "lastName": "Hill"
+      },
+      {
+        "firstName": "Peter",
+        "lastName": "Pip"
+      }
+    ]
+  },
+  {
+    "courseTitle": "Course 2",
+    "students": [
+      {
+        "firstName": "Andrew",
+        "lastName": "Hendon"
+      },
+      {
+        "firstName": "Norma",
+        "lastName": "Guerin"
+      },
+      {
+        "firstName": "Brandon",
+        "lastName": "Anders"
+      },
+      {
+        "firstName": "Robbie",
+        "lastName": "Day"
+      },
+      {
+        "firstName": "April",
+        "lastName": "Wilson"
+      }
+    ]
+  },
+  {
+    "courseTitle": "Course 3",
+    "students": [
+      {
+        "firstName": "Stephen",
+        "lastName": "Myers"
+      },
+      {
+        "firstName": "Robert",
+        "lastName": "Austin"
+      },
+      {
+        "firstName": "Ann",
+        "lastName": "Lawler"
+      },
+      {
+        "firstName": "Edgar",
+        "lastName": "Johnson"
+      },
+      {
+        "firstName": "Abigail",
+        "lastName": "Anglin"
+      }
+    ]
+  }
+]
