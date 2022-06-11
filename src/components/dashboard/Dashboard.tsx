@@ -22,7 +22,6 @@ import FlightLandIcon from '@mui/icons-material/FlightLand';
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import MuiDrawer from '@mui/material/Drawer';
 import DashboardDrawerItems from './DashboardDrawerItems';
-import CourseRoster from '../CourseRoster/CourseRoster';
 import Courses from '../../pages/Courses';
 // import BotsMain from '../bots/BotsMain';
 
@@ -93,7 +92,7 @@ function Dashboard(props: { dashboardTitle: string; teacherData: any }) {
   const { dashboardTitle, teacherData } = props;
 
   const courses: string[] = [];
-  const students = [];
+  // const students = [];
 
   teacherData.forEach(
     (course: {
@@ -104,7 +103,7 @@ function Dashboard(props: { dashboardTitle: string; teacherData: any }) {
       }[];
     }) => {
       courses.push(course.courseTitle);
-      students.push(course.students);
+      // students.push(course.students);
     }
   );
 
@@ -273,7 +272,7 @@ function Dashboard(props: { dashboardTitle: string; teacherData: any }) {
                     title: 'Departures',
                     icon: <FlightTakeoffIcon />,
                     onClick: () => {
-                      console.log('arrivals');
+                      console.log('departures');
                     },
                     disabled: false,
                   },
