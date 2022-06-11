@@ -18,6 +18,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import FlightLandIcon from '@mui/icons-material/FlightLand';
+import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import MuiDrawer from '@mui/material/Drawer';
 import DashboardDrawerItems from './DashboardDrawerItems';
 import CourseRoster from '../CourseRoster/CourseRoster';
@@ -256,6 +258,28 @@ function Dashboard(props: { dashboardTitle: string; teacherData: any }) {
           <Divider />
           <List>
             {appBarStatus.courses && <DashboardDrawerItems items={items} />}
+            {appBarStatus.enRoute && (
+              <DashboardDrawerItems
+                items={[
+                  {
+                    title: 'Arrivals',
+                    icon: <FlightLandIcon />,
+                    onClick: () => {
+                      console.log('arrivals');
+                    },
+                    disabled: true,
+                  },
+                  {
+                    title: 'Departures',
+                    icon: <FlightTakeoffIcon />,
+                    onClick: () => {
+                      console.log('arrivals');
+                    },
+                    disabled: false,
+                  },
+                ]}
+              />
+            )}
           </List>
         </Drawer>
         {appBarStatus.courses && (
