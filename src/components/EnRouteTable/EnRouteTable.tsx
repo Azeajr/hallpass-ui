@@ -20,7 +20,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { visuallyHidden } from '@mui/utils';
 import { useState } from 'react';
-// import saveAs from 'file-saver';
 
 export interface DataInterface {
   id: string;
@@ -42,7 +41,7 @@ function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
 
 type Order = 'asc' | 'desc';
 
-function getComparator<Key extends keyof any>(
+function getComparator<Key extends keyof never>(
   order: Order,
   orderBy: Key
 ): (
@@ -99,7 +98,7 @@ const headCells: readonly HeadCell[] = [
   },
   {
     id: 'timer',
-    numeric: true,
+    numeric: false,
     disablePadding: false,
     label: 'timer',
   },
@@ -173,8 +172,8 @@ function EnhancedTableHead(props: EnhancedTableProps) {
 
 interface EnhancedTableToolbarProps {
   numSelected: number;
-  onEditClicked: any;
-  onDeleteClicked: any;
+  onEditClicked: () => void;
+  onDeleteClicked: () => void;
 }
 
 function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
@@ -186,6 +185,7 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
         pl: { sm: 2 },
         pr: { xs: 1, sm: 1 },
         ...(numSelected > 0 && {
+          // FIXME: backgroundColor
           bgcolor: (theme) =>
             alpha(
               theme.palette.primary.main,
@@ -237,7 +237,7 @@ interface EnRouteTableProps {
   currentRows: DataInterface[];
 }
 
-function UsersTable(props: EnRouteTableProps) {
+function EnRouteTable(props: EnRouteTableProps) {
   const [order, setOrder] = useState<Order>('asc');
   const [orderBy, setOrderBy] = useState<keyof DataInterface>('id');
   const [selected, setSelected] = useState<readonly string[]>([]);
@@ -310,12 +310,14 @@ function UsersTable(props: EnRouteTableProps) {
   const handleEditClick = async () => {
     // await onEditClick(selected);
     // setSelected([]);
+    // eslint-disable-next-line no-console
     console.log(selected);
   };
 
   const handleDeleteClick = async () => {
     // await onDeleteClick(selected);
     // setSelected([]);
+    // eslint-disable-next-line no-console
     console.log(selected);
   };
 
@@ -413,4 +415,4 @@ function UsersTable(props: EnRouteTableProps) {
   );
 }
 
-export default UsersTable;
+export default EnRouteTable;

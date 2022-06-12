@@ -12,6 +12,7 @@ import {
   Divider,
   Button,
   Grid,
+  Container,
 } from '@mui/material';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -23,6 +24,7 @@ import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import MuiDrawer from '@mui/material/Drawer';
 import DashboardDrawerItems from './DashboardDrawerItems';
 import Courses from '../../pages/Courses';
+import EnRoute from '../../pages/EnRoute';
 // import BotsMain from '../bots/BotsMain';
 
 const drawerWidth = 240;
@@ -169,7 +171,6 @@ function Dashboard(props: { dashboardTitle: string; teacherData: any }) {
             </Typography>
             <Grid container spacing={2}>
               <Grid item>
-                {/* //TODO Need to create state variable to control when these buttons change phases  */}
                 <Button
                   disabled={appBarStatus.courses}
                   variant="outlined"
@@ -281,12 +282,28 @@ function Dashboard(props: { dashboardTitle: string; teacherData: any }) {
             )}
           </List>
         </Drawer>
-        {appBarStatus.courses && (
-          <Courses
-            teacherData={teacherData}
-            dashboardStatus={dashboardStatus}
-          />
-        )}
+        <Box
+          component="main"
+          sx={{
+            backgroundColor: (theme) =>
+              theme.palette.mode === 'light'
+                ? theme.palette.grey[100]
+                : theme.palette.grey[900],
+            flexGrow: 1,
+            height: '100vh',
+            overflow: 'auto',
+          }}
+        >
+          <Container maxWidth="lg" sx={{ mt: 8, mb: 8 }}>
+            {false && appBarStatus.courses && (
+              <Courses
+                teacherData={teacherData}
+                dashboardStatus={dashboardStatus}
+              />
+            )}
+            <EnRoute />
+          </Container>
+        </Box>
       </Box>
     </ThemeProvider>
   );
