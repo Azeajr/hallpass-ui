@@ -115,8 +115,13 @@ function Dashboard(props: { dashboardTitle: string; teacherData: any }) {
   // });
 
   const courseStatus = courses.reduce(
-    (acc: { [key: string]: boolean }, course) => {
-      acc[course] = false;
+    (acc: { [key: string]: boolean }, course, index) => {
+      if (index === 0) {
+        acc[course] = true;
+      } else {
+        acc[course] = false;
+      }
+
       return acc;
     },
     {}
@@ -294,14 +299,14 @@ function Dashboard(props: { dashboardTitle: string; teacherData: any }) {
             overflow: 'auto',
           }}
         >
-          <Container maxWidth="lg" sx={{ mt: 8, mb: 8 }}>
-            {false && appBarStatus.courses && (
+          <Container maxWidth="xl" sx={{ mt: 8, mb: 8 }}>
+            {appBarStatus.courses && (
               <Courses
                 teacherData={teacherData}
                 dashboardStatus={dashboardStatus}
               />
             )}
-            <EnRoute />
+            {appBarStatus.enRoute && <EnRoute />}
           </Container>
         </Box>
       </Box>
