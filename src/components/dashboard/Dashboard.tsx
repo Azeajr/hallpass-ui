@@ -93,6 +93,7 @@ function Dashboard(props: { dashboardTitle: string; teacherData: any }) {
 
   const { dashboardTitle, teacherData } = props;
 
+  const routes: string[] = ['Arrivals', 'Departures'];
   const courses: string[] = [];
   // const students = [];
 
@@ -127,7 +128,23 @@ function Dashboard(props: { dashboardTitle: string; teacherData: any }) {
     {}
   );
 
-  const [dashboardStatus, setDashboardStatus] = useState(courseStatus);
+  const routeStatus = routes.reduce(
+    (acc: { [key: string]: boolean }, route, index) => {
+      if (index === 0) {
+        acc[route] = true;
+      } else {
+        acc[route] = false;
+      }
+
+      return acc;
+    },
+    {}
+  );
+
+  const [dashboardStatus, setDashboardStatus] = useState({
+    ...courseStatus,
+    ...routeStatus,
+  });
 
   const onDashboardDrawerItemClicked = (course: any) => {
     setDashboardStatus({
@@ -269,18 +286,14 @@ function Dashboard(props: { dashboardTitle: string; teacherData: any }) {
                   {
                     title: 'Arrivals',
                     icon: <FlightLandIcon />,
-                    onClick: () => {
-                      console.log('arrivals');
-                    },
-                    disabled: true,
+                    onClick: onDashboardDrawerItemClicked,
+                    disabled: dashboardStatus.Arrivals,
                   },
                   {
                     title: 'Departures',
                     icon: <FlightTakeoffIcon />,
-                    onClick: () => {
-                      console.log('departures');
-                    },
-                    disabled: false,
+                    onClick: onDashboardDrawerItemClicked,
+                    disabled: dashboardStatus.Departures,
                   },
                 ]}
               />
@@ -306,7 +319,9 @@ function Dashboard(props: { dashboardTitle: string; teacherData: any }) {
                 dashboardStatus={dashboardStatus}
               />
             )}
-            {appBarStatus.enRoute && <EnRoute />}
+            {appBarStatus.enRoute && (
+              <EnRoute dashboardStatus={dashboardStatus} />
+            )}
           </Container>
         </Box>
       </Box>

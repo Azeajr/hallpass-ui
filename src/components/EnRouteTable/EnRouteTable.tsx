@@ -26,6 +26,7 @@ export interface DataInterface {
   firstName: string;
   lastName: string;
   destination: string;
+  origin: string;
   timer: number;
 }
 
@@ -89,6 +90,12 @@ const headCells: readonly HeadCell[] = [
     numeric: false,
     disablePadding: false,
     label: 'Last Name',
+  },
+  {
+    id: 'origin',
+    numeric: false,
+    disablePadding: false,
+    label: 'Origin',
   },
   {
     id: 'destination',
@@ -380,6 +387,7 @@ function EnRouteTable(props: EnRouteTableProps) {
                         {row.firstName}
                       </TableCell>
                       <TableCell align="left">{row.lastName}</TableCell>
+                      <TableCell align="left">{row.origin}</TableCell>
                       <TableCell align="left">{row.destination}</TableCell>
                       <TableCell align="left">{row.timer}</TableCell>
                     </TableRow>

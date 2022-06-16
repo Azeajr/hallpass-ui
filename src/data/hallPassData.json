@@ -4,7 +4,7 @@
     "date": "2022-06-11T09:45:00Z",
     "firstName": "Jon",
     "lastName": "Jones",
-    "origin": "Zea A.",
+    "origin": "Zea, A.",
     "destination": "Bathroom",
     "timer": 10
   },
@@ -14,7 +14,7 @@
     "firstName": "Sam",
     "lastName": "Hill",
     "origin": "Nurse",
-    "destination": "Zea A.",
+    "destination": "Zea, A.",
     "timer": 3
   },
   {
@@ -22,8 +22,8 @@
     "date": "2022-06-11T09:51:00Z",
     "firstName": "Peter",
     "lastName": "Pip",
-    "origin": "Graham M.",
-    "destination": "Zea A.",
+    "origin": "Graham, M.",
+    "destination": "Zea, A.",
     "timer": 3
   },
   {
@@ -31,7 +31,7 @@
     "date": "2022-06-11T09:51:00Z",
     "firstName": "Mary",
     "lastName": "Pop",
-    "origin": "Zea A.",
+    "origin": "Zea, A.",
     "destination": "Bathroom",
     "timer": 10
   }
