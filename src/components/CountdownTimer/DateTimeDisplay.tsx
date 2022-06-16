@@ -1,4 +1,4 @@
-import React from 'react';
+import { Card } from '@mui/material';
 
 function DateTimeDisplay(props: {
   value: number;
@@ -7,10 +7,10 @@ function DateTimeDisplay(props: {
 }) {
   const { value, type, isDanger } = props;
   return (
-    <div className={isDanger ? 'countdown danger' : 'countdown'}>
+    <Card>
       <p>{value}</p>
       <span>{type}</span>
-    </div>
+    </Card>
   );
 }
 
