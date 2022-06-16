@@ -26,13 +26,17 @@ function EnRoute(props: { dashboardStatus: any }) {
         const elapsedTime =
           (currentTime.getTime() - startTime.getTime()) / 60000;
 
+        const timerInMS =
+          new Date().getTime() + (timer - elapsedTime) * 60 * 1000;
+        // console.log(timerInMS);
+
         return {
           id,
           firstName,
           lastName,
           origin,
           destination,
-          timer: timer - elapsedTime,
+          timer: timerInMS,
         };
       })}
     />

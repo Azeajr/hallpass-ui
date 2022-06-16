@@ -20,6 +20,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { visuallyHidden } from '@mui/utils';
 import { useState } from 'react';
+import CountdownTimer from '../CountdownTimer/CountdownTimer';
 
 export interface DataInterface {
   id: string;
@@ -389,7 +390,9 @@ function EnRouteTable(props: EnRouteTableProps) {
                       <TableCell align="left">{row.lastName}</TableCell>
                       <TableCell align="left">{row.origin}</TableCell>
                       <TableCell align="left">{row.destination}</TableCell>
-                      <TableCell align="left">{row.timer}</TableCell>
+                      <TableCell align="left">
+                        <CountdownTimer targetDate={row.timer} />
+                      </TableCell>
                     </TableRow>
                   );
                 })}
