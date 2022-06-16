@@ -1,5 +1,5 @@
 // import r from 'rethinkdb';
-import Dashboard from '../components/dashboard/Dashboard';
+import Dashboard from '../components/Dashboard/Dashboard';
 import teacherData from '../data/teacherData.json';
 
 function Main() {
