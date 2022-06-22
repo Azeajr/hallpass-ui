@@ -25,7 +25,7 @@ import MuiDrawer from '@mui/material/Drawer';
 import DashboardDrawerItems from './DashboardDrawerItems';
 import Courses from '../../pages/Courses';
 import EnRoute from '../../pages/EnRoute';
-// import BotsMain from '../bots/BotsMain';
+import Hallway from '../../pages/Hallway';
 
 const drawerWidth = 240;
 
@@ -322,6 +322,7 @@ function Dashboard(props: { dashboardTitle: string; teacherData: any }) {
             {appBarStatus.enRoute && (
               <EnRoute dashboardStatus={dashboardStatus} />
             )}
+            {appBarStatus.hallway && <Hallway />}
           </Container>
         </Box>
       </Box>
