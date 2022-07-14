@@ -7,23 +7,22 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
+import { Student } from '../../common/types';
 
 interface HallpassModalProps {
-  open: boolean;
-  onClose: (student: string) => void;
-  student: { firstName: string; lastName: string };
+  onClose: () => void;
+  student: Student;
 }
 
 function HallpassModal(props: HallpassModalProps) {
-  const { open, onClose, student } = props;
+  const { onClose, student } = props;
 
   const handleClose = () => {
-    console.log('Close modal');
-    onClose(student.lastName + student.firstName);
+    onClose();
   };
 
   return (
-    <Dialog open={open} onClose={onClose}>
+    <Dialog open={!!student} onClose={onClose}>
       <DialogTitle>Hallpass</DialogTitle>
       <DialogContent>
         <Typography>{`${student.firstName} ${student.lastName}`}</Typography>

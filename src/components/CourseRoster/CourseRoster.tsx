@@ -1,35 +1,15 @@
 import { Paper, Grid, Card, Typography } from '@mui/material';
 import { useState } from 'react';
+import { Student } from '../../common/types';
 import HallpassModal from '../HallpassModal/HallpassModal';
-// import teacherData from '../../data/teacherData.json';
 
-function CourseRoster(props: {
-  courseTitle: string;
-  students: {
-    firstName: string;
-    lastName: string;
-  }[];
-}) {
-  // const students;
+function CourseRoster(props: { courseTitle: string; students: Student[] }) {
   const { courseTitle, students } = props;
 
-  const [studentHallpassModals, setStudentHallpassModals] = useState(
-    students.reduce((acc: { [key: string]: boolean }, student) => {
-      acc[student.lastName + student.firstName] = false;
-      return acc;
-    }, {})
-  );
+  const [studentHallpassModals, setStudentHallpassModals] = useState<Student>();
 
-  // const [studentHallpassModals, setStudentHallpassModals] = useState<{
-  //   [key: string]: boolean;
-  // }>({});
-
-  // console.log(studentHallpassModals);
-
-  const handleClose = (student: string) => {
-    console.log(studentHallpassModals, student);
-
-    setStudentHallpassModals({ [student]: false });
+  const handleClose = () => {
+    setStudentHallpassModals(undefined);
   };
 
   return (
@@ -41,9 +21,7 @@ function CourseRoster(props: {
             <Card
               raised
               onClick={() => {
-                setStudentHallpassModals({
-                  [student.lastName + student.firstName]: true,
-                });
+                setStudentHallpassModals(student);
               }}
             >
               <Typography
@@ -61,17 +39,13 @@ function CourseRoster(props: {
               >
                 {student.lastName}
               </Typography>
-              <HallpassModal
-                open={
-                  studentHallpassModals[student.lastName + student.firstName]
-                }
-                student={{ ...student }}
-                onClose={handleClose}
-              />
             </Card>
           </Grid>
         ))}
       </Grid>
+      {studentHallpassModals && (
+        <HallpassModal student={studentHallpassModals} onClose={handleClose} />
+      )}
     </Paper>
   );
 }
