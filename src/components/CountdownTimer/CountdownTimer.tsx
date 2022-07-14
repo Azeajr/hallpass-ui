@@ -20,11 +20,11 @@ function ExpiredNotice() {
           color: 'red',
         }}
       >
-        Expired!!!
+        Timer Expired!!!
       </span>
-      <p style={{ fontSize: '1.5rem' }}>
-        Please select a future date and time.
-      </p>
+      {/* <p style={{ fontSize: '1.5rem' }}>
+        Student .
+      </p> */}
     </Card>
   );
 }
