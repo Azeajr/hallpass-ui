@@ -8,6 +8,7 @@ import {
   Typography,
 } from '@mui/material';
 import { Student } from '../../common/types';
+import DropdownFormInput from '../DropdownFormInput/DropdownFormInput';
 
 interface HallpassModalProps {
   onClose: () => void;
@@ -35,6 +36,7 @@ function HallpassModal(props: HallpassModalProps) {
           fullWidth
           variant="standard"
         />
+        <DropdownFormInput />
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
           <Button onClick={handleClose}>Submit</Button>
