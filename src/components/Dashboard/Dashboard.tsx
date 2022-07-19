@@ -26,6 +26,7 @@ import DashboardDrawerItems from './DashboardDrawerItems';
 import Courses from '../../pages/Courses';
 import EnRoute from '../../pages/EnRoute';
 import Hallway from '../../pages/Hallway';
+import { Student } from '../../common/types';
 
 const drawerWidth = 240;
 
@@ -98,13 +99,7 @@ function Dashboard(props: { dashboardTitle: string; teacherData: any }) {
   // const students = [];
 
   teacherData.forEach(
-    (course: {
-      courseTitle: string;
-      students: {
-        firstName: string;
-        lastName: string;
-      }[];
-    }) => {
+    (course: { courseTitle: string; students: Student[] }) => {
       courses.push(course.courseTitle);
       // students.push(course.students);
     }
