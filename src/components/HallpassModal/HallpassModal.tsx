@@ -10,14 +10,13 @@ import {
 import { Student } from '../../common/types';
 import DropdownFormInput from '../DropdownFormInput/DropdownFormInput';
 
-interface HallpassModalProps {
+interface Props {
   onClose: () => void;
   student: Student;
+  destinations: string[];
 }
 
-function HallpassModal(props: HallpassModalProps) {
-  const { onClose, student } = props;
-
+function HallpassModal({ onClose, student, destinations }: Props) {
   const handleClose = () => {
     onClose();
   };
@@ -36,7 +35,7 @@ function HallpassModal(props: HallpassModalProps) {
           fullWidth
           variant="standard"
         />
-        <DropdownFormInput />
+        <DropdownFormInput selections={destinations} />
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
           <Button onClick={handleClose}>Submit</Button>
