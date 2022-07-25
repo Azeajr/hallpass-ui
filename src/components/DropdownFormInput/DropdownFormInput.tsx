@@ -5,33 +5,34 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 interface Props {
+  name: string;
   selections: string[];
 }
 
-function DropdownFormInput({ selections }: Props) {
-  const [age, setAge] = React.useState('');
+function DropdownFormInput({ name, selections }: Props) {
+  const [selection, setSelection] = React.useState('');
 
   const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value);
+    setSelection(event.target.value);
   };
 
   return (
     <div>
-      <FormControl sx={{ m: 1, minWidth: 80 }}>
-        <InputLabel id="demo-simple-select-autowidth-label">Age</InputLabel>
+      <FormControl sx={{ m: 1, width: '100%' }}>
+        <InputLabel id="demo-simple-select-autowidth-label">{name}</InputLabel>
         <Select
           labelId="demo-simple-select-autowidth-label"
           id="demo-simple-select-autowidth"
-          value={age}
+          value={selection}
           onChange={handleChange}
           autoWidth
-          label="Age"
+          label={name}
         >
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          {selections.map((selection) => (
-            <MenuItem value={selection}>{selection}</MenuItem>
+          {selections.map((element) => (
+            <MenuItem value={element}>{element}</MenuItem>
           ))}
         </Select>
       </FormControl>

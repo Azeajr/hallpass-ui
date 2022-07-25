@@ -26,16 +26,7 @@ function HallpassModal({ onClose, student, destinations }: Props) {
       <DialogTitle>Hallpass</DialogTitle>
       <DialogContent>
         <Typography>{`${student.firstName} ${student.lastName}`}</Typography>
-        <TextField
-          autoFocus
-          margin="dense"
-          id="name"
-          label="Email Address"
-          type="email"
-          fullWidth
-          variant="standard"
-        />
-        <DropdownFormInput selections={destinations} />
+        <DropdownFormInput name="Destination" selections={destinations} />
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
           <Button onClick={handleClose}>Submit</Button>

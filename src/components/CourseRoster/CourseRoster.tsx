@@ -2,6 +2,7 @@ import { Paper, Grid, Card, Typography } from '@mui/material';
 import { useState } from 'react';
 import { Student } from '../../common/types';
 import HallpassModal from '../HallpassModal/HallpassModal';
+import destinations from '../../data/destinations.json';
 
 function CourseRoster(props: { courseTitle: string; students: Student[] }) {
   const { courseTitle, students } = props;
@@ -44,7 +45,11 @@ function CourseRoster(props: { courseTitle: string; students: Student[] }) {
         ))}
       </Grid>
       {studentHallpassModals && (
-        <HallpassModal student={studentHallpassModals} onClose={handleClose} />
+        <HallpassModal
+          student={studentHallpassModals}
+          onClose={handleClose}
+          destinations={destinations}
+        />
       )}
     </Paper>
   );
