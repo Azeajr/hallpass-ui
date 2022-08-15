@@ -7,13 +7,15 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 interface Props {
   name: string;
   selections: string[];
+  getSelection(arg0: string): void;
 }
 
-function DropdownFormInput({ name, selections }: Props) {
+function DropdownFormInput({ name, selections, getSelection }: Props) {
   const [selection, setSelection] = React.useState('');
 
   const handleChange = (event: SelectChangeEvent) => {
     setSelection(event.target.value);
+    getSelection(event.target.value);
   };
 
   return (
@@ -28,12 +30,17 @@ function DropdownFormInput({ name, selections }: Props) {
           autoWidth
           label={name}
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          {selections.map((element) => (
-            <MenuItem value={element}>{element}</MenuItem>
-          ))}
+          {selections.length == 0 ? (
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+          ) : (
+            selections.map((element) => (
+              <MenuItem key={element} value={element}>
+                {element}
+              </MenuItem>
+            ))
+          )}
         </Select>
       </FormControl>
     </div>
