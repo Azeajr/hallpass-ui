@@ -45,11 +45,7 @@ function CourseRoster(props: { courseTitle: string; students: Student[] }) {
         ))}
       </Grid>
       {studentHallpassModals && (
-        <HallpassModal
-          student={studentHallpassModals}
-          onClose={handleClose}
-          destinations={destinations}
-        />
+        <HallpassModal student={studentHallpassModals} onClose={handleClose} />
       )}
     </Paper>
   );
