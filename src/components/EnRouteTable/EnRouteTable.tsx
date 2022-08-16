@@ -24,10 +24,11 @@ import CountdownTimer from '../CountdownTimer/CountdownTimer';
 
 export interface DataInterface {
   id: string;
+  date: string;
   firstName: string;
   lastName: string;
-  destination: string;
   origin: string;
+  destination: string;
   timer: number;
 }
 

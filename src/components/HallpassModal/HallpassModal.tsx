@@ -4,7 +4,6 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  TextField,
   Typography,
 } from '@mui/material';
 import Axios from 'axios';
@@ -26,7 +25,6 @@ function HallpassModal({ onClose, student }: Props) {
     (async () => {
       const data = await Axios.get('http://localhost:3002/api/getDestinations');
       setDestinations(data.data);
-      console.log(data.data);
     })().catch((error) => {
       console.error(error);
     });
@@ -43,10 +41,9 @@ function HallpassModal({ onClose, student }: Props) {
       lastName: student.lastName,
       origin: 'Zea, A.',
       destination: selection,
+      // TODO: remove
       timer: 3,
     };
-
-    console.log(data);
 
     Axios.post('http://localhost:3002/api/postHallpass', data).catch((error) =>
       console.error(error)

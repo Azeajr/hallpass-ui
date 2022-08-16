@@ -1,37 +1,37 @@
+import Axios from 'axios';
+import { useEffect, useState } from 'react';
 import EnRouteTable from '../components/EnRouteTable/EnRouteTable';
-import hallPassData from '../data/hallPassData.json';
+import { hallPass } from '../common/types';
 
 function Hallway() {
-  // const { dashboardStatus } = props;
-  // let viewHallpassData: any[] = [];
+  const [hallpasses, setHallpasses] = useState<hallPass[]>([]);
 
-  // if (dashboardStatus.Arrivals) {
-  //   viewHallpassData = hallPassData.filter(
-  //     (hallPass) => hallPass.destination === 'Zea, A.'
-  //   );
-  // } else if (dashboardStatus.Departures) {
-  //   viewHallpassData = hallPassData.filter(
-  //     (hallPass) => hallPass.origin === 'Zea, A.'
-  //   );
-  // }
+  useEffect(() => {
+    (async () => {
+      const data = await Axios.get('http://localhost:3002/api/getHallPasses');
+      setHallpasses(data.data);
+    })().catch((error) => {
+      console.error(error);
+    });
+  }, []);
 
   return (
     <EnRouteTable
-      currentRows={hallPassData.map((hallPass) => {
+      currentRows={hallpasses.map((pass) => {
         const { id, firstName, lastName, origin, destination, date, timer } =
-          hallPass;
+          pass;
 
         const startTime: Date = new Date(date);
-        const currentTime: Date = new Date('2022-06-11T09:53:00Z');
+        const currentTime: Date = new Date();
         const elapsedTime =
           (currentTime.getTime() - startTime.getTime()) / 60000;
 
         const timerInMS =
           new Date().getTime() + (timer - elapsedTime) * 60 * 1000;
-        // console.log(timerInMS);
 
         return {
-          id,
+          id: id.toString(),
+          date,
           firstName,
           lastName,
           origin,
