@@ -8,6 +8,7 @@ const pool = Object.freeze(
     password: process.env.DB_PASSWORD,
     port: parseInt(process.env.DB_PORT || '3306', 10),
     database: process.env.DB_NAME,
+    timezone: 'utc',
   })
 );
 
