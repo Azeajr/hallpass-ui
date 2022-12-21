@@ -43,6 +43,8 @@ function HallpassModal({ onClose, student }: Props) {
       destination: selection,
       // TODO: remove
       timer: 3,
+      // open, closed
+      state: 'open',
     };
 
     Axios.post('http://localhost:3002/api/postHallpass', data).catch((error) =>

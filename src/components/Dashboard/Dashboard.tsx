@@ -23,9 +23,9 @@ import FlightLandIcon from '@mui/icons-material/FlightLand';
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import MuiDrawer from '@mui/material/Drawer';
 import DashboardDrawerItems from './DashboardDrawerItems';
-import Courses from '../../pages/Courses';
-import EnRoute from '../../pages/EnRoute';
-import Hallway from '../../pages/Hallway';
+import Courses from '../Courses';
+import EnRoute from '../EnRoute';
+import Hallway from '../Hallway';
 import { Student } from '../../common/types';
 
 const drawerWidth = 240;

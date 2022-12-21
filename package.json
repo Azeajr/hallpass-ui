@@ -11,22 +11,20 @@
     "@mui/utils": "^5.8.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
-    "@testing-library/user-event": "^13.5.0",
+    "@testing-library/user-event": "^14.4.3",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.11.39",
     "@types/react": "^18.0.12",
     "@types/react-dom": "^18.0.5",
-    "axios": "^0.27.2",
+    "axios": "^1.2.0",
     "dotenv": "^16.0.1",
     "eslint-plugin-jest-dom": "^4.0.2",
     "eslint-plugin-testing-library": "^5.5.1",
-    "mariadb": "^3.0.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
+    "react-router-dom": "^6.5.0",
     "react-scripts": "^5.0.1",
-    "rethinkdb": "^2.4.2",
-    "typescript": "^4.7.3",
-    "web-vitals": "^2.1.4"
+    "typescript": "^4.7.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -53,7 +51,6 @@
     ]
   },
   "devDependencies": {
-    "@types/rethinkdb": "^2.3.17",
     "@typescript-eslint/eslint-plugin": "^5.27.1",
     "@typescript-eslint/parser": "^5.27.1",
     "eslint": "^8.17.0",
@@ -64,6 +61,6 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.30.0",
     "eslint-plugin-react-hooks": "^4.5.0",
-    "prettier": "2.6.2"
+    "prettier": "^2.8.0"
   }
 }

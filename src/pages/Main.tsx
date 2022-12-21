@@ -1,5 +1,4 @@
 // import r from 'rethinkdb';
-import { Button } from '@mui/material';
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import Dashboard from '../components/Dashboard/Dashboard';
@@ -10,7 +9,9 @@ function Main() {
 
   useEffect(() => {
     (async () => {
-      const data = await Axios.get('http://localhost:3002/api/getTeacherData');
+      const data = await Axios.get(
+        'http://localhost:3002/api/getTeacherData/1'
+      );
       setTeacherData(data.data);
     })();
   }, []);

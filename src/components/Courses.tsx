@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import CourseRoster from '../components/CourseRoster/CourseRoster';
+import CourseRoster from './CourseRoster/CourseRoster';
 
 function Courses(props: { teacherData: any; dashboardStatus: any }) {
   const { teacherData, dashboardStatus } = props;

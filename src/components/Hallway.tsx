@@ -1,6 +1,6 @@
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
-import EnRouteTable from '../components/EnRouteTable/EnRouteTable';
+import EnRouteTable from './EnRouteTable/EnRouteTable';
 import { hallPass } from '../common/types';
 
 function Hallway() {
