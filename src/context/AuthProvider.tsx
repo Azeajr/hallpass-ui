@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useMemo, useState } from 'react';
+import { createContext, useMemo, useState } from 'react';
 
 const AuthContext = createContext<{
   auth: any;
@@ -9,21 +9,6 @@ const AuthContext = createContext<{
     throw new Error('Function not implemented.');
   },
 });
-
-// interface authObj {
-//   username: string;
-//   password: string;
-//   roles: {
-//     User: string;
-//     Editor: string;
-//     Admin: string;
-//   };
-//   accessToken: string;
-// }
-
-// interface ChildrenProps {
-//   children: ReactNode;
-// }
 
 export function AuthProvider({ children }: any) {
   const [auth, setAuth] = useState({});

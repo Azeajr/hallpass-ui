@@ -6,9 +6,10 @@ import {
   DialogTitle,
   Typography,
 } from '@mui/material';
-import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Student } from '../../common/types';
+import useAuth from '../../hooks/useAuth';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import DropdownFormInput from '../DropdownFormInput/DropdownFormInput';
 
 interface Props {
@@ -21,13 +22,29 @@ function HallpassModal({ onClose, student }: Props) {
   const [destinations, setDestinations] = useState<any[]>([]);
   const [selection, setSelection] = useState<string>('');
 
+  const axiosPrivate = useAxiosPrivate();
+
+  const { auth } = useAuth();
+
   useEffect(() => {
+    let isMounted = true;
+    const controller = new AbortController();
+
     (async () => {
-      const data = await Axios.get('http://localhost:3002/api/getDestinations');
-      setDestinations(data.data);
+      const data = await axiosPrivate.get(
+        'http://localhost:3002/destinations',
+        {
+          signal: controller.signal,
+        }
+      );
+      isMounted && setDestinations(data.data);
     })().catch((error) => {
       console.error(error);
     });
+    return () => {
+      isMounted = false;
+      controller.abort();
+    };
   }, []);
 
   const handleClose = () => {
@@ -36,20 +53,20 @@ function HallpassModal({ onClose, student }: Props) {
 
   const handleSubmit = () => {
     const data = {
-      date: new Date().toISOString().slice(0, 19).replace('T', ' '),
-      firstName: student.firstName,
-      lastName: student.lastName,
-      origin: 'Zea, A.',
+      date: new Date(),
+      studentId: student.id,
+      origin: auth.username,
       destination: selection,
       // TODO: remove
       timer: 3,
       // open, closed
       state: 'open',
     };
+    console.log('Hallpass created: ', data);
 
-    Axios.post('http://localhost:3002/api/postHallpass', data).catch((error) =>
-      console.error(error)
-    );
+    axiosPrivate
+      .post('http://localhost:3002/hallpasses', data)
+      .catch((error) => console.error(error));
 
     onClose();
   };

@@ -1,31 +1,61 @@
-import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import EnRouteTable from './EnRouteTable/EnRouteTable';
-import hallPassData from '../data/hallPassData.json';
 import { hallPass } from '../common/types';
+import useAxiosPrivate from '../hooks/useAxiosPrivate';
+import useAuth from '../hooks/useAuth';
 
 function EnRoute(props: { dashboardStatus: any }) {
   const { dashboardStatus } = props;
 
   const [hallpasses, setHallpasses] = useState<hallPass[]>([]);
 
+  const axiosPrivate = useAxiosPrivate();
+
+  const { auth } = useAuth();
+
   useEffect(() => {
+    let isMounted = true;
+    const controller = new AbortController();
+
     (async () => {
-      const data = await Axios.get('http://localhost:3002/api/getHallPasses');
-      setHallpasses(data.data);
+      const data = await axiosPrivate.get('http://localhost:3002/hallpasses', {
+        signal: controller.signal,
+      });
+
+      isMounted &&
+        setHallpasses(
+          data.data.map((pass: any) => {
+            return {
+              // eslint-disable-next-line no-underscore-dangle
+              id: pass._id.toString(),
+              date: pass.date,
+              firstName: pass.student.firstName,
+              lastName: pass.student.lastName,
+              origin: pass.origin,
+              destination: pass.destination,
+              timer: pass.timer,
+            };
+          })
+        );
     })().catch((error) => {
       console.error(error);
     });
+    return () => {
+      isMounted = false;
+      controller.abort();
+    };
   }, []);
 
   let viewHallpassData: hallPass[] = [];
 
   if (dashboardStatus.Arrivals) {
     viewHallpassData = hallpasses.filter(
-      (pass) => pass.destination === 'Zea, A.'
+      (pass) => pass.destination === auth.username
     );
   } else if (dashboardStatus.Departures) {
-    viewHallpassData = hallpasses.filter((pass) => pass.origin === 'Zea, A.');
+    viewHallpassData = hallpasses.filter(
+      (pass) => pass.origin === auth.username
+    );
   }
 
   return (
@@ -39,9 +69,14 @@ function EnRoute(props: { dashboardStatus: any }) {
 
         const elapsedTime =
           (currentTime.getTime() - startTime.getTime()) / 60000;
+        console.log('date', date);
+        console.log('currentTime.getTime()', currentTime.getTime());
+        console.log('startTime.getTime()', startTime.getTime());
+        console.log('elapsedTime', elapsedTime);
 
         const timerInMS =
           new Date().getTime() + (timer - elapsedTime) * 60 * 1000;
+        console.log('timerInMS', timerInMS);
 
         return {
           id: id.toString(),

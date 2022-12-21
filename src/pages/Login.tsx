@@ -9,7 +9,6 @@ import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -81,11 +80,14 @@ export default function Login() {
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true,
       });
+      console.log(JSON.stringify(response?.data));
+      // console.log(JSON.stringify(response));
       const accessToken = response?.data?.accessToken;
       const roles = response?.data?.roles;
       setAuth?.({
         username: userInput.username,
         password: userInput.password,
+        userId: response?.data?.userId,
         roles,
         accessToken,
       });

@@ -26,8 +26,7 @@ export default function Register() {
     username: '',
     password: '',
   });
-  const [validUsername, setValidUsername] = useState(false);
-  const [validPassword, setValidPassword] = useState(false);
+
   const [success, setSuccess] = useState(false);
   const [userAlert, setUserAlert] = useState<{
     open: boolean;
@@ -90,6 +89,8 @@ export default function Register() {
           withCredentials: true,
         }
       );
+      console.log(JSON.stringify(response?.data));
+      // console.log(JSON.stringify(response))
       handleAlert('Success', 'Sign In Below');
       setSuccess(true);
     } catch (error) {
@@ -170,7 +171,6 @@ export default function Register() {
               </Grid> */}
                   <Grid item xs={12}>
                     <TextField
-                      error={validUsername}
                       required
                       fullWidth
                       id="username"
@@ -183,7 +183,6 @@ export default function Register() {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
-                      error={validPassword}
                       required
                       fullWidth
                       name="password"

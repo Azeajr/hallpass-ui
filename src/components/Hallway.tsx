@@ -1,18 +1,47 @@
-import Axios from 'axios';
 import { useEffect, useState } from 'react';
 import EnRouteTable from './EnRouteTable/EnRouteTable';
 import { hallPass } from '../common/types';
+import useAxiosPrivate from '../hooks/useAxiosPrivate';
+import useAuth from '../hooks/useAuth';
 
 function Hallway() {
   const [hallpasses, setHallpasses] = useState<hallPass[]>([]);
 
+  const axiosPrivate = useAxiosPrivate();
+
+  const { auth } = useAuth();
+
   useEffect(() => {
+    let isMounted = true;
+    const controller = new AbortController();
+
     (async () => {
-      const data = await Axios.get('http://localhost:3002/api/getHallPasses');
-      setHallpasses(data.data);
+      const data = await axiosPrivate.get('http://localhost:3002/hallpasses', {
+        signal: controller.signal,
+      });
+
+      isMounted &&
+        setHallpasses(
+          data.data.map((pass: any) => {
+            return {
+              // eslint-disable-next-line no-underscore-dangle
+              id: pass._id.toString(),
+              date: pass.date,
+              firstName: pass.student.firstName,
+              lastName: pass.student.lastName,
+              origin: pass.origin,
+              destination: pass.destination,
+              timer: pass.timer,
+            };
+          })
+        );
     })().catch((error) => {
       console.error(error);
     });
+    return () => {
+      isMounted = false;
+      controller.abort();
+    };
   }, []);
 
   return (

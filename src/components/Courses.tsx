@@ -3,6 +3,7 @@ import CourseRoster from './CourseRoster/CourseRoster';
 
 function Courses(props: { teacherData: any; dashboardStatus: any }) {
   const { teacherData, dashboardStatus } = props;
+
   return (
     <Box sx={{ padding: 1, marginTop: 8, flexGrow: 1 }}>
       {teacherData.map(
@@ -11,6 +12,7 @@ function Courses(props: { teacherData: any; dashboardStatus: any }) {
           students: {
             firstName: string;
             lastName: string;
+            id: string;
           }[];
         }) =>
           dashboardStatus[course.courseTitle] && (

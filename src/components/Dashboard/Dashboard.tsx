@@ -27,6 +27,7 @@ import Courses from '../Courses';
 import EnRoute from '../EnRoute';
 import Hallway from '../Hallway';
 import { Student } from '../../common/types';
+import useAuth from '../../hooks/useAuth';
 
 const drawerWidth = 240;
 
@@ -87,6 +88,8 @@ function Dashboard(props: { dashboardTitle: string; teacherData: any }) {
     enRoute: false,
     hallway: false,
   });
+
+  const { auth } = useAuth();
 
   const toggleDrawer = () => {
     setOpen(!open);
@@ -256,6 +259,7 @@ function Dashboard(props: { dashboardTitle: string; teacherData: any }) {
             </Grid>
             <IconButton color="inherit">
               <AccountCircleIcon sx={{ fontSize: 50 }} />
+              {auth.username}
             </IconButton>
           </Toolbar>
         </AppBar>
