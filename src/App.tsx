@@ -11,6 +11,7 @@ import Editor from './pages/Editor';
 import Admin from './pages/Admin';
 import Lounge from './pages/Lounge';
 import Missing from './pages/Missing';
+import Hallpass from './pages/Hallpass';
 
 const ROLES = {
   User: 2001,
@@ -26,8 +27,13 @@ export default function App() {
         <Route path="register" element={<Register />} />
         <Route path="linkpage" element={<LinkPage />} />
         <Route path="unauthorized" element={<Unauthorized />} />
+
         <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
-          <Route path="/" element={<Main />} />
+          {/* <Route path="/" element={<Main />} /> */}
+          <Route
+            path="/"
+            element={<Hallpass hallpassId="63a33e9e4631a785792de382" />}
+          />
         </Route>
 
         {/* catch all */}

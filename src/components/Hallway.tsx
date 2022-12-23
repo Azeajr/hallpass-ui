@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import EnRouteTable from './EnRouteTable/EnRouteTable';
-import { hallPass } from '../common/types';
+import { HallPass } from '../common/types';
 import useAxiosPrivate from '../hooks/useAxiosPrivate';
 import useAuth from '../hooks/useAuth';
 
 function Hallway() {
-  const [hallpasses, setHallpasses] = useState<hallPass[]>([]);
+  const [hallpasses, setHallpasses] = useState<HallPass[]>([]);
 
   const axiosPrivate = useAxiosPrivate();
 

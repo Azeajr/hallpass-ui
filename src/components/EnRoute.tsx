@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import EnRouteTable from './EnRouteTable/EnRouteTable';
-import { hallPass } from '../common/types';
+import { HallPass } from '../common/types';
 import useAxiosPrivate from '../hooks/useAxiosPrivate';
 import useAuth from '../hooks/useAuth';
 
 function EnRoute(props: { dashboardStatus: any }) {
   const { dashboardStatus } = props;
 
-  const [hallpasses, setHallpasses] = useState<hallPass[]>([]);
+  const [hallpasses, setHallpasses] = useState<HallPass[]>([]);
 
   const axiosPrivate = useAxiosPrivate();
 
@@ -46,7 +46,7 @@ function EnRoute(props: { dashboardStatus: any }) {
     };
   }, []);
 
-  let viewHallpassData: hallPass[] = [];
+  let viewHallpassData: HallPass[] = [];
 
   if (dashboardStatus.Arrivals) {
     viewHallpassData = hallpasses.filter(

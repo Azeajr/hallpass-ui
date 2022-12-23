@@ -9,6 +9,7 @@ export default function LinkPage() {
       <Link to="/login">Login</Link>
       <Link to="/register">Register</Link>
       <Link to="/main">Main</Link>
+      <Link to="/hallpass">Hallpass</Link>
       <br />
       <h2>Private</h2>
       <Link to="/">Home</Link>

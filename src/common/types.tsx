@@ -4,7 +4,7 @@ export interface Student {
   id: string;
 }
 
-export interface hallPass {
+export interface HallPass {
   id: number;
   date: string;
   firstName: string;
